@@ -8,18 +8,18 @@ import {
 
 const TodoCard = ({title,status}) => {
   return (
-    <div className="flex items-center justify-between p-4 bg-slate-500 rounded-lg shadow-xs">
+    <div className="flex items-center justify-between p-4 bg-slate-500 rounded-lg shadow-lg">
         <p className="mb-2 text-sm font-medium text-white ">{title}</p>
         {/* Icon box */}
         <div className="text-2xl font-semibold text-gray-700 flex items-center justify-between gap-6">
-          <span className=" cursor-pointer">
-          <FontAwesomeIcon icon={faCheckCircle}/>
+          <span title='Completed' className=" cursor-pointer">
+          <FontAwesomeIcon className=' hover:text-green-300' icon={faCheckCircle}/>
           </span>
-          <span className=" cursor-pointer">
-          <FontAwesomeIcon icon={faTrashAlt}/>
+          <span title='Delete' className="cursor-pointer">
+          <FontAwesomeIcon className='hover:text-red-600' icon={faTrashAlt}/>
           </span>
-          <span className=" cursor-pointer">
-          <FontAwesomeIcon icon={faEdit}/>
+          <span title='Edit' className="cursor-pointer">
+          <FontAwesomeIcon className=' hover:text-slate-200' icon={faEdit}/>
           </span>
         </div>
       </div>
