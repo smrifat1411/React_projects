@@ -11,7 +11,7 @@ function App() {
       status: false,
     },
     {
-      id: 1,
+      id: 2,
       title: "Task 2",
       status: false,
     },
@@ -21,16 +21,28 @@ function App() {
   const [editform, setEditform] = useState(false);
   const [newTask, setNewTask] = useState("");
 
+  // Callback for get the input value from form and save it to state
+
   const addTaskOnChange = (e) => setNewTask(e.target.value);
 
-  const addTaskSubmit = () =>{
-    let newId = todoList.length+1
+  // Call back for Add a Task on Submit
+  const addTaskSubmit = () => {
+    let newId = todoList.length + 1;
     let newTaskEntry = {
-      id:newId,
-      status:false,
-      title:newTask
-    }
-    newTask && setTodoList((prev) => [...prev, newTaskEntry])};
+      id: newId,
+      status: false,
+      title: newTask,
+    };
+    newTask && setTodoList((prev) => [...prev, newTaskEntry]);
+  };
+
+  // delete a task
+
+  const deleteTask = (id) => {
+    let currentTasks = todoList.filter((t) => t.id !== id);
+    setTodoList(currentTasks);
+    // console.log(id);
+  };
 
   return (
     // Main body
@@ -54,9 +66,21 @@ function App() {
         placeholder="Edit your Task here"
       />
 
-      {todoList.map((todo, index) => {
-        return <TodoCard key={index} title={todo.title} status={todo.status} />;
-      })}
+      {todoList.length ? (
+        todoList.map((todo, index) => {
+          return (
+            <TodoCard
+              key={index}
+              id={todo.id}
+              title={todo.title}
+              status={todo.status}
+              deleteTask={deleteTask}
+            />
+          );
+        })
+      ) : (
+        <h1 className="text-center text-2xl">You have No ToDo, Hurrayh</h1>
+      )}
     </div>
   );
 }
