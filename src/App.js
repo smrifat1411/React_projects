@@ -1,21 +1,11 @@
 import { useState } from "react";
+import Clock from "./components/Clock";
 import InputBox from "./components/InputBox";
 
 import TodoCard from "./components/TodoCard";
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    {
-      id: 1,
-      title: "Task 1",
-      status: false,
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      status: false,
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
 
   const [addform, setAddform] = useState(false);
   const [editform, setEditform] = useState(false);
@@ -57,15 +47,17 @@ function App() {
       return td;
     });
 
-    setTodoList(finishTask);
+    return setTodoList(finishTask);
   };
-  console.log(todoList);
+  // console.log(todoList);
+
+  // Main body
+
   return (
-    // Main body
     <div className="max-w-[720px] mx-auto my-9 flex flex-col gap-2">
       <h1 className="text-center text-2xl font-semibold">My ToDo App</h1>
       {/*add task Button Box */}
-
+      <Clock/>
       <InputBox
         text={"Add Task"}
         color={"bg-green-600"}
