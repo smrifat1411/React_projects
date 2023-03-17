@@ -44,6 +44,22 @@ function App() {
     // console.log(id);
   };
 
+  // complete a task
+
+  const completeTask = (currId) => {
+    let finishTask = todoList.map((td) => {
+      if (td.id === currId) {
+        return {
+          ...td,
+          status: !td.status,
+        };
+      }
+      return td;
+    });
+
+    setTodoList(finishTask);
+  };
+  console.log(todoList);
   return (
     // Main body
     <div className="max-w-[720px] mx-auto my-9 flex flex-col gap-2">
@@ -75,6 +91,7 @@ function App() {
               title={todo.title}
               status={todo.status}
               deleteTask={deleteTask}
+              completeTask={completeTask}
             />
           );
         })

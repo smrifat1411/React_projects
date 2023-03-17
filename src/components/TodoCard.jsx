@@ -6,13 +6,25 @@ import {
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 
-const TodoCard = ({ title, status, id, deleteTask }) => {
+const TodoCard = ({ title, status, id, deleteTask, completeTask }) => {
   return (
     <div className="flex items-center justify-between p-4 bg-slate-500 rounded-lg shadow-lg">
-      <p className="mb-2 text-sm font-medium text-white ">{title}</p>
+      {!status ? (
+        <p className="mb-2 text-sm font-medium text-white ">{title}</p>
+      ) : (
+        <p className="mb-2 text-sm font-medium text-green-300 line-through">
+          {title}
+        </p>
+      )}
       {/* Icon box */}
       <div className="text-2xl font-semibold text-gray-700 flex items-center justify-between gap-6">
-        <span title="Completed" className=" cursor-pointer">
+        <span
+          title="Completed"
+          className=" cursor-pointer"
+          onClick={() => {
+            completeTask(id);
+          }}
+        >
           <FontAwesomeIcon
             className=" hover:text-green-300"
             icon={faCheckCircle}
@@ -25,9 +37,11 @@ const TodoCard = ({ title, status, id, deleteTask }) => {
         >
           <FontAwesomeIcon className="hover:text-red-600" icon={faTrashAlt} />
         </span>
-        <span title="Edit" className="cursor-pointer">
-          <FontAwesomeIcon className=" hover:text-slate-200" icon={faEdit} />
-        </span>
+        {!status ? (
+          <span title="Edit" className="cursor-pointer">
+            <FontAwesomeIcon className=" hover:text-slate-200" icon={faEdit} />
+          </span>
+        ) : null}
       </div>
     </div>
   );
